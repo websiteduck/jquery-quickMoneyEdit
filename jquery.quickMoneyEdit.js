@@ -53,18 +53,19 @@
     };
  
  	$.fn.quickMoneyEdit.unformatCurrency = function(result) {
-		return result.replace(/[^0-9.\-]/g, '');
+		return result.replace(/[^-0-9\.]/g, '');
 	};
 
 	$.fn.quickMoneyEdit.formatCurrency = function(result) {
-		result = result.replace(/[^0-9.\-]/g, '');
+		result = result.replace(/[^-0-9\.]/g, '');
 		result = parseFloat(result);
 		if (isNaN(result)) return '$0.00';
 		var sign = result < 0 ? '-' : '';
+		result = Math.abs(result);
 		var integer = parseInt(result) + '';
 		var firstComma = integer.length > 3 ? integer.length % 3 : 0;
 		result = result.toFixed(2);
-		return '$' + sign + (firstComma ? integer.substr(0, firstComma) + ',' : '') + integer.substr(firstComma).replace(/(\d{3})(?=\d)/g, '$1' + ',') + '.' + result.slice(-2);	
+		return sign + '$' + (firstComma ? integer.substr(0, firstComma) + ',' : '') + integer.substr(firstComma).replace(/(\d{3})(?=\d)/g, '$1' + ',') + '.' + result.slice(-2);	
 	};
  
 }(jQuery));
