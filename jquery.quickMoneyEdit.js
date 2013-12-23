@@ -30,7 +30,8 @@
 
 			$.valHooks.text.set = function(el, value) {
 				if (!$(el).attr('data-quickMoneyEdit')) {
-					if (origGetHook) origSetHook(el);
+					if (origGetHook) return origSetHook(el);
+					else return undefined;
 				}
 				el.value = $.fn.quickMoneyEdit.formatCurrency(value);
 			};
