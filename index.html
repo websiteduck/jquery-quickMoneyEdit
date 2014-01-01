@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>Quick Money Edit Demo</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="jquery.quickMoneyEdit.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script>
 			$(function() {
 				$('.money-edit').quickMoneyEdit();
@@ -11,16 +11,29 @@
 				$('#example1').change(function() {
 					$('#unformatted').html($(this).val());
 					$('#formatted').html($(this).quickMoneyEdit('formatted'));
-				});
+				}).change();
 			});
 		</script>
+		<style>
+			table td { padding: 10px; }
+		</style>
 	</head>
 	<body>
 		<h1>Quick Money Edit Demo</h1>
 		<div>
-			<input type="text" id="example1" class="money-edit" value="1234.56"><br>
-			<b>Unformatted:</b> <span id="unformatted"></span> - $('#example1').val()<br>
-			<b>Formatted:</b> <span id="formatted></span> - $('#example1').quickMoneyEdit('formatted')<br>
+			<input type="text" id="example1" class="money-edit" value="1234.56"><br><br>
+			<table>
+				<tr>
+					<th>Unformatted:</th>
+					<td> <span id="unformatted"></span></td>
+					<td>$('#example1').val()</td>
+				</tr>
+				<tr>
+					<th>Formatted:</th>
+					<td><span id="formatted"></span></td>
+					<td>$('#example1').quickMoneyEdit('formatted')</td>
+				</tr>
+			</table>
 		</div>
 	</body>
 </html>
