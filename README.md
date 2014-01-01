@@ -3,6 +3,8 @@ Quick Money Edit - jQuery Plugin
 
 Input Box Currency Formatting
 
+[Live Demo](http://websiteduck.github.io/jquery-quickMoneyEdit/)
+
 Example Usage
 -------------
 ```
