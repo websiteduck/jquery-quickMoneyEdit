@@ -7,10 +7,20 @@
 		<script>
 			$(function() {
 				$('.money-edit').quickMoneyEdit();
+
+				$('#example1').change(function() {
+					$('#unformatted').html($(this).val());
+					$('#formatted').html($(this).quickMoneyEdit('formatted'));
+				});
 			});
 		</script>
 	</head>
 	<body>
-		<input type="text" class="money-edit" value="1234.56">
+		<h1>Quick Money Edit Demo</h1>
+		<div>
+			<input type="text" id="example1" class="money-edit" value="1234.56"><br>
+			<b>Unformatted:</b> <span id="unformatted"></span> - $('#example1').val()<br>
+			<b>Formatted:</b> <span id="formatted></span> - $('#example1').quickMoneyEdit('formatted')<br>
+		</div>
 	</body>
 </html>
