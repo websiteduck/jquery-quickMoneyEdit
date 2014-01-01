@@ -8,10 +8,10 @@
 			$(function() {
 				$('.money-edit').quickMoneyEdit();
 
-				$('#example1').change(function() {
+				$('#example1').keyup(function() {
 					$('#unformatted').html($(this).val());
 					$('#formatted').html($(this).quickMoneyEdit('formatted'));
-				}).change();
+				}).keyup();
 			});
 		</script>
 		<style>
