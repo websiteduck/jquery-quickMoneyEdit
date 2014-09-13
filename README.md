@@ -25,7 +25,7 @@ $('#price').val(); // '1234.56'
 $('#price').quickMoneyEdit('formatted'); // '$1,234.56'
 ```
 
-//Knockout Binding
+Knockout Binding
 ---------------
 ```
     ko.bindingHandlers.quickMoneyEdit = {
@@ -76,7 +76,7 @@ Durandal Binding
     })
 
 ```
-How to use the binding
+How to use the knockout binding
 
 ```
 <input id="budget" class="form-control cpc-cost" type="text" data-bind="quickMoneyEdit:{value:yourObeservableHere}">
