@@ -25,7 +25,9 @@
 					if (origGetHook) return origGetHook(el);
 					else return undefined;
 				}
-				return $.fn.quickMoneyEdit.unformatCurrency(el.value);
+				var ret = $.fn.quickMoneyEdit.unformatCurrency(el.value);
+				if (ret === '') return 0;
+				else return ret;
 			};
 
 			$.valHooks.text.set = function(el, value) {
