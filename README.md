@@ -54,7 +54,8 @@ ko.bindingHandlers.quickMoneyEdit = {
             var value = valueAccessor();
             var valueUnwrapped = ko.unwrap(value);
             if ($(element).is(':focus')) {
-                $(element).val(valueUnwrapped);
+                if (valueUnwrapped === 0) $(element).val('');
+                else $(element).val(valueUnwrapped);
             }
             else {
                 $(element).val($.fn.quickMoneyEdit.formatCurrency(valueUnwrapped));
