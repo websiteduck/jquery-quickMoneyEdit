@@ -28,23 +28,36 @@ $('#price').quickMoneyEdit('formatted'); // '$1,234.56'
 Knockout Binding
 ---------------
 ```
-    ko.bindingHandlers.quickMoneyEdit = {
-        init: function(element, valueAccessor, allBindingsAccessor) {
-            var mask = valueAccessor();
-            var observable = mask.value;
-            if (ko.isObservable(observable)) {
-                $(element).on('focusout change', function() {
-                    observable($(element).val());
-                });
+ko.bindingHandlers.quickMoneyEdit = {
+        init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            var value = valueAccessor();
+            var valueUnwrapped = ko.unwrap(value);
+            var valueUpdate = allBindings.get('valueUpdate');
+            var event = '';
+
+            switch(valueUpdate) {
+                case 'input': event = 'change'; break;
+                case 'keypress': event = 'keypress'; break;
+                case 'keyup': event = 'keyup'; break;
+                case 'keydown': event = 'keydown'; break;
+                case 'afterkeydown': event = 'keypress'; break;
+                default: event = 'change'; break;
             }
+
+            $(element).on(event, function() { 
+                value($(this).val());
+            });
+
             $(element).quickMoneyEdit();
         },
         update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-            var mask = valueAccessor();
-            var observable = mask.value;
-            if (ko.isObservable(observable)) {
-                var valuetoWrite = observable();
-                $(element).val(valuetoWrite);
+            var value = valueAccessor();
+            var valueUnwrapped = ko.unwrap(value);
+            if ($(element).is(':focus')) {
+                $(element).val(valueUnwrapped);
+            }
+            else {
+                $(element).val($.fn.quickMoneyEdit.formatCurrency(valueUnwrapped));
             }
         }
     }
