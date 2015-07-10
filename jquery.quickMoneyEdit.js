@@ -41,6 +41,7 @@
 				this.value = $.fn.quickMoneyEdit.formatCurrency(this.value);
 				$(this).focus(function() {
 					this.value = $.fn.quickMoneyEdit.unformatCurrency(this.value);
+					if (this.value == '0.00') this.value = '';
 				}).blur(function() {
 					this.value = $.fn.quickMoneyEdit.formatCurrency(this.value);
 				});
